@@ -1,0 +1,116 @@
+{
+  "info": {
+    "_postman_id": "a4d9b239-47be-4bb3-a29e-7e03f2a8f23f",
+    "name": "Quick App - QuickBooks API",
+    "description": "Postman collection for QuickBooks integration endpoints in quick_app.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "QuickBooks Connect",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/qb/connect",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "qb",
+            "connect"
+          ]
+        },
+        "description": "Starts OAuth flow and redirects to QuickBooks login."
+      },
+      "response": []
+    },
+    {
+      "name": "QuickBooks Callback",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/qb/callback?code={{qb_code}}&realmId={{qb_realm_id}}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "qb",
+            "callback"
+          ],
+          "query": [
+            {
+              "key": "code",
+              "value": "{{qb_code}}"
+            },
+            {
+              "key": "realmId",
+              "value": "{{qb_realm_id}}"
+            }
+          ]
+        },
+        "description": "Handles OAuth callback and stores access/refresh tokens."
+      },
+      "response": []
+    },
+    {
+      "name": "QuickBooks Charge",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"amount\": {{amount}},\n  \"currency\": \"{{currency}}\",\n  \"card_token\": \"{{card_token}}\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/qb/charge",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "qb",
+            "charge"
+          ]
+        },
+        "description": "Charges a card token via QuickBooks Payments."
+      },
+      "response": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://127.0.0.1:8000"
+    },
+    {
+      "key": "qb_code",
+      "value": "PASTE_AUTHORIZATION_CODE"
+    },
+    {
+      "key": "qb_realm_id",
+      "value": "PASTE_REALM_ID"
+    },
+    {
+      "key": "amount",
+      "value": "10.50"
+    },
+    {
+      "key": "currency",
+      "value": "USD"
+    },
+    {
+      "key": "card_token",
+      "value": "PASTE_CARD_TOKEN"
+    }
+  ]
+}
