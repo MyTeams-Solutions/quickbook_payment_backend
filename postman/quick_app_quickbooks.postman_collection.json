@@ -7,6 +7,135 @@
   },
   "item": [
     {
+      "name": "Register",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"{{user_name}}\",\n  \"email\": \"{{user_email}}\",\n  \"user_id\": \"{{user_password}}\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/register",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "register"
+          ]
+        },
+        "description": "Registers a new user and returns a Sanctum token."
+      },
+      "response": []
+    },
+    {
+      "name": "Login",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"{{user_email}}\",\n  \"user_id\": \"{{user_password}}\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/login",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "login"
+          ]
+        },
+        "description": "Logs in and returns a Sanctum token."
+      },
+      "response": []
+    },
+    {
+      "name": "Create Account",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{auth_token}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"number\": \"{{card_number}}\",\n  \"exp_month\": \"{{exp_month}}\",\n  \"exp_year\": \"{{exp_year}}\",\n  \"cvc\": \"{{cvc}}\",\n  \"name\": \"{{card_name}}\",\n  \"postal_code\": \"{{postal_code}}\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/accounts",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "accounts"
+          ]
+        },
+        "description": "Creates account details for the authenticated user."
+      },
+      "response": []
+    },
+    {
+      "name": "Get Account By ID",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{auth_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/accounts/{{account_id}}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "accounts",
+            "{{account_id}}"
+          ]
+        },
+        "description": "Gets an account by ID for the authenticated user."
+      },
+      "response": []
+    },
+    {
       "name": "QuickBooks Connect",
       "request": {
         "method": "GET",
@@ -111,6 +240,50 @@
     {
       "key": "card_token",
       "value": "PASTE_CARD_TOKEN"
+    },
+    {
+      "key": "auth_token",
+      "value": "PASTE_AUTH_TOKEN"
+    },
+    {
+      "key": "user_name",
+      "value": "Test User"
+    },
+    {
+      "key": "user_email",
+      "value": "test@example.com"
+    },
+    {
+      "key": "user_password",
+      "value": "password123"
+    },
+    {
+      "key": "card_number",
+      "value": "4111111111111111"
+    },
+    {
+      "key": "exp_month",
+      "value": "12"
+    },
+    {
+      "key": "exp_year",
+      "value": "2028"
+    },
+    {
+      "key": "cvc",
+      "value": "123"
+    },
+    {
+      "key": "card_name",
+      "value": "John Doe"
+    },
+    {
+      "key": "postal_code",
+      "value": "94086"
+    },
+    {
+      "key": "account_id",
+      "value": "1"
     }
   ]
 }
