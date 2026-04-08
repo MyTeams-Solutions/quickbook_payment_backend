@@ -12,7 +12,7 @@ class UserController extends Controller
     public function register(Request $request)
     {
         $validated = $request->validate([
-            'email' => 'required|string|max:255|unique:users,email',
+            'email' => 'required|string|unique:users,email',
             'user_id' => 'required|string',
         ]);
 
@@ -32,8 +32,8 @@ class UserController extends Controller
     public function login(Request $request)
     {
         $credentials = $request->validate([
-            'email' => 'required|string|max:255',
-            'user_id' => 'required|string|min:8|max:255',
+            'email' => 'required|string',
+            'user_id' => 'required|string',
         ]);
 
         $user = User::where('email', $credentials['email'])->first();
