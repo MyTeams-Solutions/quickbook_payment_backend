@@ -16,11 +16,11 @@ class AccountController extends Controller
             'cvc' => 'required|string|min:3|max:4',
             'name' => 'nullable|string|max:100',
             'postal_code' => 'nullable|string|max:10',
+            'user_id' => 'nullable',
         ]);
 
-        $account = Account::create(array_merge($validated, [
-            'user_id' => $request->user()->id,
-        ]));
+        // $account = Account::create(array_merge($validated, [ 'user_id' => $request->user()->id,]));
+        $account = Account::create(array_merge($validated));
 
         return response()->json([
             'message' => 'Account saved successfully.',
@@ -28,11 +28,11 @@ class AccountController extends Controller
         ], 201);
     }
 
-    public function show(Request $request, int $id)
+    public function show(Request $request, $id)
     {
-        $account = Account::where('user_id', $request->user()->id)->find($id);
+        $account = Account::where('user_id', $id)->get();
 
-        if (! $account) {
+        if (!$account) {
             return response()->json([
                 'message' => 'Account not found.',
             ], 404);

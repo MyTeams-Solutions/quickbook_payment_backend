@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('accounts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->integer('user_id')->nullable();
             $table->string('number');
             $table->string('exp_month', 2);
             $table->string('exp_year', 4);
